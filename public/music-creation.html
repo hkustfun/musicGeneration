@@ -1,0 +1,331 @@
+<!-- public/music-creation.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Music</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/musicCreation.js" defer></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <nav>
+      <a href="index.html" class="logo">MusicGenAI</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Features</a></li>
+        <!-- More links -->
+      </ul>
+      <div class="auth-buttons">
+        <button id="login-btn">Login</button>
+        <button id="signup-btn">Sign Up</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h1>Create Your Custom Music</h1>
+    <form id="music-form">
+      <!-- Section for Duration/Number of Bars -->
+      <div class="form-section">
+        <label for="duration">Duration (in seconds):</label>
+        <input type="number" id="duration" name="duration" min="10" max="600" value="120">
+      </div>
+
+      <!-- 1. Tempo (Speed) -->
+      <div class="form-section">
+        <label for="tempo">Tempo (BPM):</label>
+        <input type="range" id="tempo" name="tempo" min="40" max="300" value="120">
+        <span id="tempo-value">120 BPM</span>
+      </div>
+
+      <!-- 2. Time Signature (Meter) -->
+      <div class="form-section">
+        <label for="time-signature">Time Signature:</label>
+        <select id="time-signature" name="timeSignature">
+          <optgroup label="Simple Time">
+            <option value="4/4">4/4 (Common)</option>
+            <option value="3/4">3/4 (Waltz)</option>
+            <option value="2/4">2/4 (March)</option>
+          </optgroup>
+          <optgroup label="Compound Time">
+            <option value="6/8">6/8</option>
+            <option value="9/8">9/8</option>
+            <option value="12/8">12/8</option>
+          </optgroup>
+          <optgroup label="Odd/Customized Meters">
+            <option value="5/4">5/4</option>
+            <option value="7/8">7/8</option>
+            <option value="11/8">11/8</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <!-- 3. Key Signature -->
+      <div class="form-section">
+        <label for="key-signature">Key Signature:</label>
+        <select id="key-signature" name="keySignature">
+          <option value="C Major">C Major</option>
+          <option value="A Minor">A Minor</option>
+          <optgroup label="Modal Variants">
+            <option value="Dorian">Dorian</option>
+            <option value="Phrygian">Phrygian</option>
+            <option value="Lydian">Lydian</option>
+            <option value="Mixolydian">Mixolydian</option>
+            <option value="Aeolian">Aeolian</option>
+            <option value="Locrian">Locrian</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <!-- 4. Chord Progressions -->
+      <div class="form-section">
+        <label for="chord-progression">Chord Progression:</label>
+        <select id="chord-progression" name="chordProgression">
+          <optgroup label="Major Progressions">
+            <option value="I-IV-V-I">I-IV-V-I</option>
+            <option value="I-vi-IV-V">I-vi-IV-V</option>
+            <option value="I-V-vi-IV">I-V-vi-IV</option>
+          </optgroup>
+          <optgroup label="Minor Progressions">
+            <option value="i-iv-V-i">i-iv-V-i</option>
+            <option value="i-VI-III-VII">i-VI-III-VII</option>
+          </optgroup>
+          <optgroup label="Jazz Progressions">
+            <option value="ii-V-I">ii-V-I</option>
+            <option value="iii-vi-ii-V-I">iii-vi-ii-V-I</option>
+          </optgroup>
+          <optgroup label="Blues Progression">
+            <option value="12-bar blues">12-bar blues</option>
+          </optgroup>
+          <option value="custom">Custom (Enter your own)</option>
+        </select>
+        <input type="text" id="custom-chords" name="customChords" placeholder="e.g., C-G-Am-F" style="display:none;">
+      </div>
+
+      <!-- 5. Scales -->
+      <div class="form-section">
+        <label for="scales">Scales:</label>
+        <select id="scales" name="scales">
+          <option value="Major Scale">Major Scale</option>
+          <optgroup label="Minor Scales">
+            <option value="Natural Minor">Natural Minor</option>
+            <option value="Harmonic Minor">Harmonic Minor</option>
+            <option value="Melodic Minor">Melodic Minor</option>
+          </optgroup>
+          <optgroup label="Pentatonic Scales">
+            <option value="Major Pentatonic">Major Pentatonic</option>
+            <option value="Minor Pentatonic">Minor Pentatonic</option>
+          </optgroup>
+          <optgroup label="Exotic Scales">
+            <option value="Whole Tone">Whole Tone</option>
+            <option value="Phrygian Dominant">Phrygian Dominant</option>
+            <option value="Japanese Scale">Japanese Scale</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <!-- 6. Style/Genre -->
+      <div class="form-section">
+        <label for="genre">Style/Genre:</label>
+        <select id="genre" name="genre">
+          <option value="Classical">Classical</option>
+          <option value="Pop">Pop</option>
+          <option value="Rock">Rock</option>
+          <option value="Jazz">Jazz</option>
+          <option value="Blues">Blues</option>
+          <option value="Electronic">Electronic (EDM)</option>
+          <option value="Hip-Hop">Hip-Hop</option>
+          <option value="Country">Country</option>
+          <option value="Reggae">Reggae</option>
+          <option value="Folk">Folk</option>
+          <option value="World Music">World Music</option>
+          <option value="Film Music">Film Music</option>
+        </select>
+      </div>
+
+      <!-- 7. Mood -->
+      <div class="form-section">
+        <label for="mood">Mood:</label>
+        <select id="mood" name="mood">
+          <option value="Happy">Happy</option>
+          <option value="Sad">Sad</option>
+          <option value="Energetic">Energetic</option>
+          <option value="Calm">Calm</option>
+          <option value="Tense">Tense</option>
+          <option value="Romantic">Romantic</option>
+          <option value="Nostalgic">Nostalgic</option>
+          <option value="Mysterious">Mysterious</option>
+          <option value="Dramatic">Dramatic</option>
+          <option value="Uplifting">Uplifting</option>
+          <option value="Melancholic">Melancholic</option>
+          <option value="Epic">Epic</option>
+        </select>
+      </div>
+
+      <!-- 8. Instrumentation -->
+      <div class="form-section">
+        <label for="instruments">Instrumentation:</label>
+        <select id="instruments" name="instruments" multiple>
+          <optgroup label="Strings">
+            <option value="Violin">Violin</option>
+            <option value="Viola">Viola</option>
+            <option value="Cello">Cello</option>
+            <option value="Double Bass">Double Bass</option>
+          </optgroup>
+          <optgroup label="Percussion">
+            <option value="Drums">Drums</option>
+            <option value="Congas">Congas</option>
+            <option value="Tambourine">Tambourine</option>
+            <option value="Xylophone">Xylophone</option>
+          </optgroup>
+          <optgroup label="Brass">
+            <option value="Trumpet">Trumpet</option>
+            <option value="Trombone">Trombone</option>
+            <option value="French Horn">French Horn</option>
+            <option value="Tuba">Tuba</option>
+          </optgroup>
+          <optgroup label="Woodwinds">
+            <option value="Flute">Flute</option>
+            <option value="Clarinet">Clarinet</option>
+            <option value="Oboe">Oboe</option>
+            <option value="Saxophone">Saxophone</option>
+          </optgroup>
+          <optgroup label="Keyboards">
+            <option value="Piano">Piano</option>
+            <option value="Organ">Organ</option>
+            <option value="Synthesizer">Synthesizer</option>
+          </optgroup>
+          <optgroup label="Guitars">
+            <option value="Acoustic Guitar">Acoustic Guitar</option>
+            <option value="Electric Guitar">Electric Guitar</option>
+            <option value="Bass Guitar">Bass Guitar</option>
+          </optgroup>
+          <optgroup label="Electronic/Synthesizers">
+            <option value="Pads">Pads</option>
+            <option value="Leads">Leads</option>
+            <option value="Arpeggiators">Arpeggiators</option>
+          </optgroup>
+          <optgroup label="Vocals">
+            <option value="Solo Vocals">Solo vocals</option>
+            <option value="Harmonies">Harmonies</option>
+            <option value="Choir">Choir</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <!-- 9. Dynamics -->
+      <div class="form-section">
+        <label for="dynamics">Dynamics:</label>
+        <select id="dynamics" name="dynamics">
+          <option value="pp">Pianissimo (pp): Very soft</option>
+          <option value="p">Piano (p): Soft</option>
+          <option value="mp">Mezzo-piano (mp): Moderately soft</option>
+          <option value="mf">Mezzo-forte (mf): Moderately loud</option>
+          <option value="f">Forte (f): Loud</option>
+          <option value="ff">Fortissimo (ff): Very loud</option>
+          <option value="crescendos">Crescendos: Gradual increase in volume</option>
+          <option value="decrescendos">Decrescendos: Gradual decrease in volume</option>
+        </select>
+      </div>
+
+      <!-- 10. Rhythmic Elements -->
+      <div class="form-section">
+        <label for="rhythmic-elements">Rhythmic Elements:</label>
+        <select id="rhythmic-elements" name="rhythmicElements" multiple>
+          <option value="Groove">Groove</option>
+          <option value="Syncopation">Syncopation</option>
+          <option value="Polyrhythm">Polyrhythm</option>
+          <option value="Ostinato">Ostinato</option>
+          <option value="Triplets">Triplets</option>
+          <option value="Breaks">Breaks/Pauses</option>
+        </select>
+      </div>
+
+      <!-- 11. Song Structure -->
+      <div class="form-section">
+        <label for="song-structure">Song Structure:</label>
+        <select id="song-structure" name="songStructure">
+          <optgroup label="Pop Structures">
+            <option value="Pop">Intro → Verse → Chorus → Verse → Chorus → Bridge → Chorus → Outro</option>
+          </optgroup>
+          <optgroup label="Classical Forms">
+            <option value="Sonata">Sonata Form (Exposition → Development → Recapitulation)</option>
+            <option value="Rondo">Rondo Form (ABACABA)</option>
+          </optgroup>
+          <optgroup label="Jazz Structures">
+            <option value="Jazz">Head → Solo Sections → Head → Outro</option>
+          </optgroup>
+          <optgroup label="Electronic Music">
+            <option value="Electronic">Build-up → Drop → Breakdown → Drop → Outro</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <!-- 12. Effects and Textures -->
+      <div class="form-section">
+        <label for="effects">Effects and Textures:</label>
+        <select id="effects" name="effects" multiple>
+          <option value="Reverb">Reverb</option>
+          <option value="Delay">Delay/Echo</option>
+          <option value="Distortion">Distortion</option>
+          <option value="Chorus">Chorus</option>
+          <option value="Phaser">Phaser/Flanger</option>
+          <option value="Automation">Automation</option>
+        </select>
+      </div>
+
+      <!-- 13. Layers -->
+      <div class="form-section">
+        <label for="layers">Layers:</label>
+        <select id="layers" name="layers">
+          <option value="Monophonic">Single melodies (monophonic)</option>
+          <option value="Homophonic">Harmonized melodies (homophonic)</option>
+          <option value="Polyphonic">Counterpoint (polyphonic)</option>
+          <option value="Background Pads">Background pads or drones</option>
+        </select>
+      </div>
+
+      <!-- 14. Groove Variants -->
+      <div class="form-section">
+        <label for="groove-variants">Groove Variants:</label>
+        <select id="groove-variants" name="grooveVariants">
+          <option value="Straight">Straight Groove</option>
+          <option value="Swing">Swing Groove</option>
+          <option value="Latin">Latin Groove</option>
+          <option value="Funky">Funky Groove</option>
+        </select>
+      </div>
+
+      <!-- 15. Advanced Elements -->
+      <div class="form-section">
+        <label for="advanced-elements">Advanced Elements:</label>
+        <select id="advanced-elements" name="advancedElements" multiple>
+          <option value="Modulations">Modulations</option>
+          <option value="Tempo Changes">Tempo Changes</option>
+          <option value="Meter Changes">Meter Changes</option>
+          <option value="Counterpoint">Counterpoint</option>
+          <option value="Ornamentation">Ornamentation</option>
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit">Generate Music</button>
+    </form>
+
+    <!-- Music Preview -->
+    <div id="music-preview">
+      <!-- Audio player will be inserted here -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 YukiMusicGenAI. All rights reserved.</p>
+    <a href="https://www.instagram.com/_yandere_yuki/">Instagram</a>
+  </footer>
+</body>
+</html>
